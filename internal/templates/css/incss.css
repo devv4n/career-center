@@ -1,0 +1,93 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.logo img {
+  width: 40px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.login button {
+  background: linear-gradient(104.44deg, rgb(70, 182, 156) 0.65%, rgb(42, 152, 249) 100.65%);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+main {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.buttons .btn {
+  background: linear-gradient(104.44deg, rgb(70, 182, 156) 0.65%, rgb(42, 152, 249) 100.65%);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.university-logo img {
+  width: 60%;
+  margin-top: 20px;
+}
+
+.student-employer-buttons {
+  margin-top: 20px;
+}
+
+.student-employer-buttons .student-btn,
+.student-employer-buttons .employer-btn {
+  background: linear-gradient(104.44deg, rgb(70, 182, 156) 0.65%, rgb(42, 152, 249) 100.65%);
+  border: none;
+  border-radius: 18px;
+  padding: 15px 30px;
+  color: #fff;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 200px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+footer h3 {
+  margin: 0;
+}
+
+footer p, footer ul {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.social img {
+  width: 20px;
+  vertical-align: middle;
+}

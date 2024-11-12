@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Vacancy Notification</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        .container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+        h2 { color: #333; }
+        p { font-size: 1.1em; }
+        .footer { margin-top: 20px; color: #888; font-size: 0.9em; }
+        button {
+            background: linear-gradient(104.44deg, rgb(70, 182, 156) 0.65%, rgb(42, 152, 249) 100.65%);
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    document.getElementById('myButton').addEventListener('click', function() {
+        fetch('/api/add-vacancy/{id}', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .catch(error => console.error('Ошибка:', error));
+    });
+</script>
+
+<div class="container">
+    <h2>Новая вакансия</h2>
+    <p><strong>Контакты:</strong> {{.Contacts}}</p>
+    <p><strong>Описание:</strong> {{.Description}}</p>
+
+    <div class="buttons">
+        <button class="myButton" >Принять вакансию</button>
+        <button class="btn" onclick="window.location.href='{{.Sheet}}'">Изменить</button>
+    </div>
+
+    <div class="footer">
+        <p>Это письмо было сформировано автоматически. Пожалуйста, не отвечайте на него.</p>
+    </div>
+</div>
+</body>
+</html>

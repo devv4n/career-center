@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>События</title>
+    <link rel="stylesheet" href="../css/evcss.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="../assets/image_9d922d21.png" alt="CareerCenter Logo">
+        </div>
+        <h1>События</h1>
+        <div class="login">
+            <button>Вход</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="buttons">
+            <button class="btn" onclick="window.location.href='vacans.html'">Вакансии</button>
+            <button class="btn" onclick="window.location.href='events.html'">События</button>
+        </div>
+        
+        <div class="content">
+            <div class="events-list">
+                <input type="text" placeholder="Поиск" class="search-bar">
+                <button class="search-button">Поиск</button>
+
+                <h2>События:</h2>
+                <ul>
+                    <li><a href="event1.html">event1</a></li>
+                    <li><a href="event2.html">event2</a></li>
+                    <li><a href="event3.html">event3</a></li>
+                    <li><a href="event4.html">event4</a></li>
+                    <li>...</li>
+                </ul>
+            </div>
+
+            <div class="calendar">
+              <h3 id="monthAndYear"></h3>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Пн</th>
+                          <th>Вт</th>
+                          <th>Ср</th>
+                          <th>Чт</th>
+                          <th>Пт</th>
+                          <th>Сб</th>
+                          <th>Вс</th>
+                      </tr>
+                  </thead>
+                  <tbody id="calendar-body"></tbody>
+              </table>
+              <button onclick="previous()">Предыдущий</button>
+              <button onclick="next()">Следующий</button>
+          </div>
+          
+          <script>
+              let today = new Date();
+              let currentMonth = today.getMonth();
+              let currentYear = today.getFullYear();
+          
+              const monthAndYear = document.getElementById("monthAndYear");
+          
+              function showCalendar(month, year) {
+                  let firstDay = new Date(year, month).getDay() - 1;
+                  let daysInMonth = 32 - new Date(year, month, 32).getDate();
+                  const calendarBody = document.getElementById("calendar-body");
+                  calendarBody.innerHTML = "";
+          
+                  monthAndYear.innerHTML = new Intl.DateTimeFormat("ru-RU", { month: "long", year: "numeric" }).format(new Date(year, month));
+          
+                  let date = 1;
+                  for (let i = 0; i < 6; i++) {
+                      let row = document.createElement("tr");
+          
+                      for (let j = 0; j < 7; j++) {
+                          let cell = document.createElement("td");
+                          if (i === 0 && j < firstDay) {
+                              row.appendChild(cell);
+                          } else if (date > daysInMonth) {
+                              break;
+                          } else {
+                              cell.innerText = date;
+                              row.appendChild(cell);
+                              date++;
+                          }
+                      }
+                      calendarBody.appendChild(row);
+                  }
+              }
+          
+              function previous() {
+                  currentMonth = (currentMonth - 1 + 12) % 12;
+                  if (currentMonth === 11) currentYear--;
+                  showCalendar(currentMonth, currentYear);
+              }
+          
+              function next() {
+                  currentMonth = (currentMonth + 1) % 12;
+                  if (currentMonth === 0) currentYear++;
+                  showCalendar(currentMonth, currentYear);
+              }
+          
+              showCalendar(currentMonth, currentYear);
+          </script>
+          
+        </div>
+    </main>
+</body>
+</html>

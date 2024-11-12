@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Vacancy.Title }}</title>
+</head>
+<body>
+<h1>{{ .Vacancy.Title }}</h1>
+<nav>
+    <a href="/">Главная</a> |
+    <a href="/vacancies">Все вакансии</a>
+</nav>
+<p><strong>Описание:</strong> {{ .Vacancy.Description }}</p>
+<p><strong>Дата добавления:</strong> {{ .Vacancy.CreatedAt.Format "02.01.2006" }}</p>
+</body>
+</html>
