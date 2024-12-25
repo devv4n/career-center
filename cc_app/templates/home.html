@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/ind.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<style>
+    .swiper {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        max-height: 500px;
+        margin: 0 auto;
+        border-radius: 5px; /* Угол скругления */
+    }
+    .swiper-pagination-bullet{
+        background-color: #cccccc;
+    }
+</style>
+
+<div class="swiper">
+    <div class="swiper-wrapper">
+        {% for image_url in images %}
+        <div class="swiper-slide">
+            <img src="{{ image_url }}" alt="Слайд {{ forloop.counter }}">
+        </div>
+        {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<section class="intro">
+    <p>Центр Карьеры Кубанского ГАУ — это ваш портал к новым карьерным возможностям. Нажмите на нужную кнопку ниже, чтобы подать заявку для работодателей и студентов.</p>
+
+    <div class="buttons">
+        <a href="{% url 'vacancy_form' %}" class="btn">Работодателям</a>
+        <a href="{% url 'student_form' %}" class="btn">Студентам</a>
+    </div>
+</section>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const swiper = new Swiper('.swiper', {
+            loop: true, // Бесконечный цикл
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 5000,
+            },
+        });
+    });
+</script>
+{% endblock %}

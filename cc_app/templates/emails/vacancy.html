@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новая Вакансия</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .container p strong {
+            color: #2c3e50;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+
+        .btn:active {
+            background-color: #1d6fa5;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Новая заявка на добавление вакансии</h2>
+    <p><strong>Название вакансии:</strong> {{ vacancy.title }}</p>
+    <p><strong>Работодатель:</strong> {{ vacancy.employer }}</p>
+    <p><strong>Дата создания:</strong> {{ vacancy.created_at }}</p>
+    <p><strong>Условия:</strong> {{ vacancy.conditions }}</p>
+    <p><strong>Местоположение:</strong> {{ vacancy.location }}</p>
+
+    <a href="http://95.31.141.34:8000/admin/career_centrer_app/vacancy/{{ vacancy.id }}/change/" class="btn">Принять заявку</a>
+</div>
+</body>
+</html>

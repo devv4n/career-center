@@ -1,0 +1,131 @@
+<!-- career_centrer_app/templates/vacancy_detail.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ vacancy.title }} | CareerCenter{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/vacancies.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<style>
+    /* Общий стиль для страницы вакансии */
+    .vacancy-detail {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 800px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Заголовок вакансии */
+    .vacancy-title {
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: var(--text-color);
+    }
+
+    /* Информация о вакансии */
+    .vacancy-info {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: var(--header-bg);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    /* Блок описания */
+    .description {
+        margin-bottom: 30px;
+    }
+
+    .description h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: var(--text-color);
+    }
+
+    .description p {
+        line-height: 1.6;
+    }
+
+    /* Кнопка подачи заявки */
+    .btn.apply-btn {
+        display: inline-block;
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 1.2em;
+        background-color: var(--button-bg);
+        color: var(--text-color);
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s, transform 0.2s ease;
+        font-weight: bold;
+    }
+
+    .btn.apply-btn:hover {
+        background-color: var(--button-hover);
+        transform: scale(1.05);
+    }
+
+    /* Мобильная адаптация */
+    @media (max-width: 768px) {
+        .vacancy-detail {
+            padding: 15px;
+        }
+
+        .vacancy-title {
+            font-size: 2em;
+        }
+
+        .btn.apply-btn {
+            font-size: 1em;
+            padding: 10px 15px;
+        }
+    }
+
+</style>
+
+<section class="vacancy-detail">
+    <h1 class="vacancy-title">{{ vacancy.title }}</h1>
+    <div class="vacancy-info">
+        <p><strong>Работодатель:</strong> {{ vacancy.employer }}</p>
+        <p><strong>Тип занятости:</strong> {{ vacancy.get_job_type_display }}</p>
+        <p><strong>Местоположение:</strong> {{ vacancy.location }}</p>
+        <p><strong>Контактное лицо:</strong> {{ vacancy.contact_person }}</p>
+        <p><strong>Телефон:</strong> {{ vacancy.contact_phone }}</p>
+        <p><strong>Email:</strong> <a href="mailto:{{ vacancy.contact_email }}">{{ vacancy.contact_email }}</a></p>
+        {% if vacancy.additional_contacts %}
+        <p><strong>Дополнительные контакты:</strong> {{ vacancy.additional_contacts }}</p>
+        {% endif %}
+        <p><strong>Дата создания:</strong> {{ vacancy.created_at|date:"d.m.Y H:i" }}</p>
+    </div>
+
+    <div class="description">
+        <h2>Обязанности</h2>
+        <p>{{ vacancy.responsibilities|linebreaks }}</p>
+    </div>
+
+    <div class="description">
+        <h2>Требования</h2>
+        <p>{{ vacancy.requirements|linebreaks }}</p>
+    </div>
+
+    <div class="description">
+        <h2>Условия работы</h2>
+        <p>{{ vacancy.conditions|linebreaks }}</p>
+    </div>
+
+    {% if vacancy.is_active %}
+    <a href="{% url 'student_form' %}?vacancy={{ vacancy.id }}" class="btn apply-btn">Подать заявку</a>
+    {% else %}
+    <p class="inactive-message">Эта вакансия больше недоступна.</p>
+    {% endif %}
+</section>
+{% endblock %}
