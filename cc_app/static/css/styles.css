@@ -1,0 +1,194 @@
+/* Базовые стили для переключения тем */
+/*:root {*/
+/*    --bg-color: #121212;*/
+/*    --text-color: #ffffff;*/
+/*    --header-bg: #1e1e1e;*/
+/*    --button-bg: #222;*/
+/*    --button-hover: #333;*/
+/*    --link-color: #0078d4;*/
+/*    --link-hover: #005a9e;*/
+/*    --border-color: #333;*/
+/*}*/
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --header-bg: #f1f1f1;
+    --button-bg: #e0e0e0;
+    --button-hover: #cccccc;
+    --link-color: #005a9e;
+    --link-hover: #0078d4;
+    --border-color: #dddddd;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.social-icons {
+    display: flex; /* Устанавливает элементы в строку */
+    justify-content: center; /* Центрирует элементы по горизонтали */
+    gap: 10px; /* Расстояние между элементами */
+    margin-top: 20px; /* Отступ сверху (по желанию) */
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center; /* Центрируем все содержимое в header */
+    align-items: center; /* Выравниваем элементы по вертикали */
+    border-bottom: 2px solid var(--border-color);
+    gap: 20px; /* Добавляем расстояние между элементами */
+}
+
+header .divider {
+    width: 2px; /* Толщина разделителя */
+    height: 40px; /* Высота разделителя */
+    background-color: var(--border-color); /* Цвет разделителя */
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+header nav {
+    display: flex; /* Используем flexbox для навигации */
+    justify-content: center; /* Центрируем внутри nav */
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+header nav ul li a:hover {
+    background-color: var(--button-hover);
+}
+
+header .theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: inherit;
+    margin-left: 10px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+header .theme-toggle:hover {
+    opacity: 1;
+}
+
+footer {
+    background-color: var(--header-bg);
+    padding: 10px 20px;
+    text-align: center;
+    border-top: 2px solid var(--border-color);
+    position: relative; /* Убедитесь, что нет `absolute` или `fixed` */
+    margin-top: auto;
+}
+
+footer a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--link-hover);
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Кнопки */
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border-radius: 5px;
+    border: 2px solid var(--border-color);
+    transition: background 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.05);
+}
+
+.logo {
+    display: flex; /* Размещаем элементы в одну строку */
+    align-items: center; /* Выравниваем элементы по вертикали */
+}
+
+.logo-link {
+    display: flex; /* Логотип и текст в одной строке */
+    align-items: center; /* Выравниваем элементы по вертикали */
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #333; /* Цвет текста */
+    transition: color 0.3s; /* Анимация изменения цвета */
+}
+
+.logo-link:hover {
+    color: #007bff; /* Изменение цвета текста при наведении */
+}
+
+.logo-image {
+    height: 50px; /* Устанавливаем высоту изображения */
+    width: auto; /* Сохраняем пропорции */
+    transition: transform 0.3s; /* Добавляем анимацию */
+}
+
+.logo-link:hover .logo-image {
+    transform: scale(1.1); /* Увеличиваем изображение при наведении */
+}
+
+.logo-text {
+    font-size: 20px; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    display: inline;
+}
+
+@media (max-width: 768px) {
+    .logo-text {
+        display: none; /* Скрываем текст на мобильных устройствах */
+    }
+    header{
+        gap:5px;
+    }
+
+}

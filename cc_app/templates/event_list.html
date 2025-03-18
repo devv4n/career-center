@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}События | CareerCenter{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/events.css' %}">
+
+<section class="events-section">
+    <h1 class="centered-title">События</h1>
+    <div class="events-list">
+        {% for event in page_obj %}
+        <a href="{% url 'event_detail' event.id %}" class="event-link">
+            <div class="event">
+                <h3>{{ event.name }}</h3>
+                <span>{{ event.date }}</span>
+            </div>
+        </a>
+        {% empty %}
+        <p>Событий пока нет</p>
+        {% endfor %}
+    </div>
+
+    <!-- Пагинация -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1"><<</a>
+            <a href="?page={{ page_obj.previous_page_number }}"><</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">></a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">>></a>
+            {% endif %}
+        </span>
+    </div>
+</section>
+<script src="{% static 'js/events.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!-- cc_app/templates/cc_app/student_application.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Заявка Студента | CareerCenter{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/vac_form.css' %}">
+<section class="form">
+    <h2>Заявка Студента</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+            {{ field }}
+            {% if field.help_text %}
+            <p class="help-text">{{ field.help_text }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn">Отправить заявку</button>
+    </form>
+</section>
+
+{% if success %}
+<script>
+    alert("Ваша заявка успешно отправлена!");
+</script>
+{% endif %}
+
+{% endblock %}

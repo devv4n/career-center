@@ -1,0 +1,109 @@
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+main .intro p {
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    max-width: 600px;
+}
+
+main .buttons {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center; /* Выравниваем кнопки по центру */
+    width: 100%;
+    padding: 0; /* Убираем отступы */
+    margin-top: 20px; /* Отступ снизу, чтобы отступить от слайдера */
+}
+
+main .buttons .btn {
+    text-decoration: none;
+    padding: 20px 40px;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Растягиваем кнопки, чтобы они занимали одинаковую ширину */
+    text-align: center;
+    min-width: 200px; /* Определяем минимальную ширину для кнопок */
+}
+
+/* Слайдер */
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+.slider {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    width: 100%;
+    height: auto;
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+    display: block;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.slider-controls button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    font-size: 1.5em;
+    transition: background 0.3s;
+}
+
+.slider-controls button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+    main .intro p {
+        display: none; /* Скрываем текст на мобильных устройствах */
+    }
+
+    /* Изменяем расположение кнопок на мобильных устройствах */
+    main .buttons {
+        flex-direction: column; /* Кнопки в столбик */
+        gap: 20px; /* Уменьшаем промежуток между кнопками */
+    }
+
+    main .buttons .btn {
+        width: 100%; /* Кнопки занимают всю доступную ширину */
+        min-width: unset; /* Убираем минимальную ширину */
+    }
+}

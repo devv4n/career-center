@@ -1,0 +1,86 @@
+<!-- career_centrer_app/templates/vacancy_list.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Вакансии | CareerCenter{% endblock %}
+
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/vacancies.css' %}">
+
+<section class="search-section">
+    <h1>Вакансии</h1>
+    <form method="get" class="search-container">
+        <input type="text" id="search-input" name="search" placeholder="Введите название вакансии..." value="{{ request.GET.search }}">
+        <button type="submit" id="search-btn">Поиск</button>
+
+        <!-- Фильтры -->
+        <div class="filter-container">
+            <button type="button" id="filter-toggle" class="filter-toggle">Фильтры</button>
+            <div id="filter-dropdown" class="filter-dropdown" style="display: none;">
+                <label>
+                    <input type="checkbox" name="job_type" value="REMOTE" {% if 'REMOTE' in request.GET.job_type %}checked{% endif %}>
+                    Удаленная работа
+                </label>
+                <label>
+                    <input type="checkbox" name="job_type" value="FULL_TIME" {% if 'FULL_TIME' in request.GET.job_type %}checked{% endif %}>
+                    Полный день
+                </label>
+                <label>
+                    <input type="checkbox" name="job_type" value="PART_TIME" {% if 'PART_TIME' in request.GET.job_type %}checked{% endif %}>
+                    Частичная занятость
+                </label>
+                <button type="submit" id="apply-filters" class="apply-filters">Применить</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<section class="vacancy-list">
+    <div class="vacancies-list">
+        {% for vacancy in page_obj %}
+        <a href="{% url 'vacancy_detail' id=vacancy.id %}" class="vacancy-link">
+            <div class="vacancy">
+                <h3>{{ vacancy.title }}</h3>
+                <p>{{ vacancy.description|truncatechars:200 }}</p>
+                <p><strong>Тип занятости:</strong> {{ vacancy.get_job_type_display }}</p>
+            </div>
+        </a>
+        {% empty %}
+        <p>Вакансий нет</p>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"><<</a>
+                <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"><</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">></a>
+                <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">>></a>
+            {% endif %}
+        </span>
+    </div>
+</section>
+
+
+<script>
+    document.getElementById('filter-toggle').addEventListener('click', function() {
+        const filterDropdown = document.getElementById('filter-dropdown');
+        if (filterDropdown.style.display === 'none' || filterDropdown.style.display === '') {
+            filterDropdown.style.display = 'block';
+        } else {
+            filterDropdown.style.display = 'none';
+        }
+    });
+</script>
+
+
+{% endblock %}

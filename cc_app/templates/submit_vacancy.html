@@ -1,0 +1,35 @@
+<!-- cc_app/templates/cc_app/submit_vacancy.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Добавить Вакансию | CareerCenter{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/vac_form.css' %}">
+<section class="form">
+    <h2>Заявка на добавление вакансии</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+            {{ field }}
+            {% if field.help_text %}
+            <p class="help-text">{{ field.help_text }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn">Отправить Заявку</button>
+    </form>
+</section>
+
+
+{% if success %}
+<script>
+    alert("Вакансия успешно добавлена и ожидает одобрения администратором!");
+</script>
+{% endif %}
+
+{% endblock %}

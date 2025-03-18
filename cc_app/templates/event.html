@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<style>
+    /* Общий стиль для страницы вакансии */
+    .event-content {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 800px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Заголовок вакансии */
+    .event-title {
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: var(--text-color);
+    }
+
+    /* Информация о вакансии */
+    .vacancy-info {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: var(--header-bg);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    /* Блок описания */
+    .description {
+        margin-bottom: 30px;
+    }
+
+    .description h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: var(--text-color);
+    }
+
+    .description p {
+        line-height: 1.6;
+    }
+
+    /* Кнопка подачи заявки */
+    .btn.apply-btn {
+        display: inline-block;
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 1.2em;
+        background-color: var(--button-bg);
+        color: var(--text-color);
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s, transform 0.2s ease;
+        font-weight: bold;
+    }
+
+    .btn.apply-btn:hover {
+        background-color: var(--button-hover);
+        transform: scale(1.05);
+    }
+
+    /* Мобильная адаптация */
+    @media (max-width: 768px) {
+        .event-content {
+            padding: 15px;
+        }
+
+        .event-title {
+            font-size: 2em;
+        }
+
+        .btn.apply-btn {
+            font-size: 1em;
+            padding: 10px 15px;
+        }
+    }
+
+</style>
+<div class="event-content">
+    <h1 class="event-title">{{ event.name }}</h1>
+
+    <p><strong>Дата:</strong> {{ event.date }}</p>
+    <p><strong>Место:</strong> {{ event.location }}</p>
+
+    <div class="description">
+        <h2>Описание</h2>
+        <p>{{ event.description|linebreaks }}</p>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,195 @@
+
+/* Стили для страницы вакансий */
+.search-section {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.search-section h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-container input {
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    width: 300px;
+}
+
+.search-container button {
+    flex: 1; /* Делает все кнопки равной ширины, адаптивно */
+    height: 50px; /* Фиксированная высота */
+    max-width: 120px; /* Опционально ограничить максимальную ширину */
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--button-hover);
+}
+
+/* Центрирование заголовка */
+
+
+.centered-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+/* Список вакансий */
+.vacancies-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Максимум два столбца */
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto; /* Центрирование */
+    max-width: 700px; /* Установите максимальную ширину */
+}
+
+/* Ссылка для каждой вакансии */
+.vacancy-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Стили для каждой вакансии */
+.vacancy {
+    padding: 20px;
+    background-color: var(--header-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.vacancy:hover {
+    background-color: var(--button-hover);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Стили для активного состояния ссылок */
+.vacancy-link:hover {
+    text-decoration: none;
+    color: var(--link-hover);
+}
+
+/* Пагинация */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.pagination .step-links a {
+    padding: 8px 12px;
+    background-color: var(--header-bg);
+    color: var(--text-color);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.pagination .step-links a:hover {
+    background-color: var(--button-hover);
+}
+
+.pagination .step-links .current {
+    padding: 8px 12px;
+    background-color: var(--button-hover);
+    color: white;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .vacancies-list {
+        grid-template-columns: 1fr; /* Один столбец на мобильных устройствах */
+    }
+}
+
+.filter-container {
+    position: relative;
+}
+
+.filter-toggle {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.filter-toggle:hover {
+    background-color: var(--button-hover);
+}
+
+.filter-dropdown {
+    display: none; /* По умолчанию скрыто */
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: var(--header-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 200px;
+}
+
+.filter-dropdown label {
+    display: flex;        /* Используем flex для выравнивания по горизонтали */
+    align-items: center;  /* Центрируем элементы по вертикали */
+    justify-content: flex-start; /* Выравниваем по левому краю */
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 100%;           /* Занимает всю ширину */
+}
+
+.filter-dropdown input[type="checkbox"] {
+    margin-right: 10px;    /* Отступ между чекбоксом и текстом */
+}
+
+.filter-dropdown button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.filter-dropdown button:hover {
+    background-color: var(--button-hover);
+}
+
+.filter-dropdown input[type="checkbox"]:checked + label {
+    color: var(--link-color);
+    font-weight: bold;
+}
